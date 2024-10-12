@@ -1,40 +1,108 @@
 # Change Log
 
-## [2.1.0] 2023-11-14
-- Upgrade to Material Tailwind `v2`
+## [2.0.3] 2022-09-08
 
-## [2.0.1] 2023-03-29
+### Update v2.0.3
 
-- Add nepcha scripts
+- We deleted `fonts.js` and now you can change the fonts directly in `src/theme/styles.js`. You can also use @fontsource and import your fonts that way as well!
+## [2.0.2] 2022-05-16
 
-## [2.0.0] 2022-11-02
+### Update v2.0.2
 
-- Update the entire structure
-- Migration to vite
-- Migration to React 18
-- Migration to React Router DOM 6
-- Migration to @material-tailwind/react latest version
-- Migration from chart.js to apexcharts
-- Add global context support
+- The problem with npm install/ building the project was fixed.
 
-## [1.1.0] 2021-06-10
+### Updated dependencies
 
-### New Features
+```
+chakra-ui/icons                      1.0.14         →         1.1.5
+chakra-ui/react                      1.6.5          →         1.8.8
+chakra-ui/theme-tools                1.1.9          →         1.3.6
+```
 
-- Add the download button
+### Added dependencies
 
-### Bug Fixing
+```
+chakra-ui/system                      1.12.1
+```
 
-- Fix the dropdown of admin navbar
+## [2.0.1] 2022-03-20
 
-## [1.0.0] 2021-06-08
+### Update v2.0.1
 
-### Original Release
+- The problem with npm install/ building the project was solved. Until the plugins we used are updated for React v17.0.2 we are reverting to 16.14.0 for the moment.
 
-- Started project from [Material Tailwind Dashboard React](https://www.creative-tim.com/product/material-tailwind-dashboard-react?ref=changelog-mtdr)
-- Updated all dependencies from [Material Tailwind Dashboard React](https://www.creative-tim.com/product/material-tailwind-dashboard-react?ref=changelog-mtdr) and those dependencies that were not working with the new React v17+ API, were deleted and/or replaced
+### Updated dependencies
+
+```
+react                                17.0.2         →         16.14.0
+react-datetime                       3.0.4          →         3.1.1
+react-dom                            17.0.2         →         16.14.0
+react-router-dom                     6.2.1          →         5.2.1
+react-swipeable-views                0.13.9         →         0.14.0
+stylis-plugin-rtl                    2.1.0          →         2.1.1
+```
+
+## [2.0.0] 2022-03-09
+
+### Update v2.0.0
+
+### Added components
+
+- Each page now has a folder of its own, containing `index.js` (for the page itself) and a folder in which all cards have been made as a separate component which take props.
+- Added sidebar content which is used for both the standard sidebar and the responsive sidebar drawer.
+- Inside `Sidebar` folder in `components`, there is `index.js`, which is the actual sidebar, and `SidebarResponsive.js` which is a button that opens the sidebar drawer.
+
+### Updated dependencies
+
+```
+@emotion/cache                       11.4.0         →         11.7.1
+@emotion/react                       11.4.1         →         11.8.1
+@emotion/styled                      11.3.0         →         11.8.1
+react-router-dom                     5.2.0          →         6.2.1
+stylis                               4.0.10         →         4.0.13
+```
 
 ### Warning
 
-_Warnings might appear while doing a clean npm install - they do not affect the UI or the functionality of the product, and they appear because of NodeJS and not from the product itself._
-_This product was designed and developed using NodeJS version 14.16.0 LTS, so please make sure to have a compatible version of NodeJS._
+There is a warnings related to the stylis-plugin-rtl dependency that won't affect on the behavior of the product its something with the library itself.
+
+## [1.0.2] 2021-09-13
+
+### Update v1.0.2
+
+### Bug fixing
+
+- Removed console errors
+
+### Updated dependencies
+
+```
+node-sass                            5.0.0          →         7.0.1
+react-scripts                        4.0.3          →         5.0.0
+```
+
+## [1.0.1] 2021-09-13
+
+### Update v1.0.1
+
+- Added RTL Page
+
+### Added dependencies
+
+```
+@emotion/cache                                                11.4.0
+react-github-btn                                              1.2.1
+```
+
+### Updated dependencies
+
+```
+stylis                               4.0.10         →         4.0.13
+stylis-plugin-rtl                    2.1.0          →         2.1.14
+```
+
+## [1.0.0] 2021-08-20
+
+### Original Release
+
+- Added Chakra UI as base framework
