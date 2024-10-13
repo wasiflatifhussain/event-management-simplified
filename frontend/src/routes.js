@@ -1,6 +1,6 @@
 // import
 import Home from "views/Dashboard/Dashboard";
-import Tables from "views/Dashboard/Tables";
+import FindEvents from "views/Dashboard/FindEvents";
 import ManageRSVP from "views/Dashboard/ManageRSVP";
 import RTLPage from "views/Dashboard/RTL";
 import Profile from "views/Dashboard/Profile";
@@ -31,7 +31,7 @@ var dashRoutes = [
     path: "/find-events",
     name: "Find Events",
     icon: <ClockIcon color="inherit" />,
-    component: Tables,
+    component: FindEvents,
     layout: "/admin",
   },
   {

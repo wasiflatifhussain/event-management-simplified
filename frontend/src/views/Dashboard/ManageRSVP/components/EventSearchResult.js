@@ -91,7 +91,7 @@ const EventSearchResult = ({ event, onRSVPOut }) => {
 
             {/* Gradient Overlay */}
             <Box
-              bg="linear-gradient(180deg, rgba(49, 56, 96, 0.16) 0%, #dd6633 140%)"
+              bg="linear-gradient(180deg, rgba(49, 56, 96, 0.16) 0%, #dd6633 120%)"
               w="100%"
               h="100%"
               position="absolute"  // Ensure the overlay is positioned over the image

@@ -1,24 +1,11 @@
 // Chakra imports
 import { Box, Flex, Grid, IconButton, Input, InputGroup, InputLeftElement, useColorModeValue, Text, Icon } from "@chakra-ui/react";
 // Assets
-import BackgroundCard1 from "assets/img/BackgroundCard1.png";
-import { MastercardIcon, VisaIcon } from "components/Icons/Icons";
 import React, { useState } from "react";
-import { FaPaypal, FaWallet } from "react-icons/fa";
-import { RiMastercardFill } from "react-icons/ri";
-import {
-  billingData,
-  invoicesData,
-} from "variables/general";
 import { SearchIcon } from "@chakra-ui/icons";
 
 
 import RSVPedEvents from "./components/RSVPedEvents";
-import CreditCard from "./components/CreditCard";
-import Invoices from "./components/Invoices";
-import PaymentMethod from "./components/PaymentMethod";
-import PaymentStatistics from "./components/PaymentStatistics";
-import { SearchBar } from "components/Navbars/SearchBar/SearchBar";
 import { rsvpedEvents } from "./rsvpedEvents";
 import EventSearchResult from "./components/EventSearchResult";
 
