@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa";
 
-function RSVPedEventsRow({row}) {
+function RSVPedEventsRow({row, handleRSVPOut}) {
   const textColor = useColorModeValue("#f0bc02", "white");
   const bgColor = useColorModeValue("#F4F6FF", "gray.800");
   const nameColor = useColorModeValue("#dd6633", "white");
@@ -58,6 +58,7 @@ function RSVPedEventsRow({row}) {
             bg="transparent"
             mb={{ sm: "10px", md: "0px" }}
             me={{ md: "12px" }}
+            onClick={() => handleRSVPOut(row.eventId)}
           >
             <Flex color={textColor} cursor="pointer" align="center" p="12px">
               <Icon as={FaTrashAlt} me="4px" />

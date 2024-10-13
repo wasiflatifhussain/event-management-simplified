@@ -5,7 +5,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardHeader from "components/Card/CardHeader.js";
 import RSVPedEventsRow from "./RSVPedEventsRow";
 
-const RSVPedEvents = ({ title, attending, setAttending }) => {
+const RSVPedEvents = ({ title, attending, setAttending, handleRSVPOut }) => {
   const textColor = useColorModeValue("#1e0a3c", "white");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,6 +44,7 @@ const RSVPedEvents = ({ title, attending, setAttending }) => {
               <RSVPedEventsRow
                 key={index} // Use index for key since data may not have unique ID
                 row={row.event}
+                handleRSVPOut={handleRSVPOut}
               />
             ))}
           </Flex>
