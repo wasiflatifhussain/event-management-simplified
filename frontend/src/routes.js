@@ -1,7 +1,7 @@
 // import
-import Dashboard from "views/Dashboard/Dashboard";
+import Home from "views/Dashboard/Dashboard";
 import Tables from "views/Dashboard/Tables";
-import Billing from "views/Dashboard/Billing";
+import ManageRSVP from "views/Dashboard/ManageRSVP";
 import RTLPage from "views/Dashboard/RTL";
 import Profile from "views/Dashboard/Profile";
 import SignIn from "views/Auth/SignIn.js";
@@ -14,73 +14,51 @@ import {
   PersonIcon,
   DocumentIcon,
   RocketIcon,
-  SupportIcon,
+  ClockIcon,
+  SettingsIcon,
+  SupportIcon
 } from "components/Icons/Icons";
 
 var dashRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    rtlName: "لوحة القيادة",
+    path: "/home",
+    name: "Home",
     icon: <HomeIcon color="inherit" />,
-    component: Dashboard,
+    component: Home,
     layout: "/admin",
   },
   {
-    path: "/tables",
-    name: "Tables",
-    rtlName: "لوحة القيادة",
-    icon: <StatsIcon color="inherit" />,
+    path: "/find-events",
+    name: "Find Events",
+    icon: <ClockIcon color="inherit" />,
     component: Tables,
     layout: "/admin",
   },
   {
-    path: "/billing",
-    name: "Billing",
-    rtlName: "لوحة القيادة",
-    icon: <CreditIcon color="inherit" />,
-    component: Billing,
+    path: "/manage-rsvp",
+    name: "Manage RSVP",
+    icon: <SettingsIcon color="inherit" />,
+    component: ManageRSVP,
     layout: "/admin",
   },
   {
-    path: "/rtl-support-page",
-    name: "RTL",
-    rtlName: "آرتيإل",
-    icon: <SupportIcon color="inherit" />,
-    component: RTLPage,
-    layout: "/rtl",
-  },
-  {
-    name: "ACCOUNT PAGES",
+    name: "Admin Panel",
     category: "account",
-    rtlName: "صفحات",
     state: "pageCollapse",
     views: [
       {
-        path: "/profile",
-        name: "Profile",
-        rtlName: "لوحة القيادة",
-        icon: <PersonIcon color="inherit" />,
-        secondaryNavbar: true,
+        path: "/admin-add-events",
+        name: "Add Events",
+        icon: <DocumentIcon color="inherit" />,
         component: Profile,
         layout: "/admin",
       },
       {
-        path: "/signin",
-        name: "Sign In",
-        rtlName: "لوحة القيادة",
-        icon: <DocumentIcon color="inherit" />,
+        path: "/admin-manage-events",
+        name: "Moderate Events",
+        icon: <SupportIcon color="inherit" />,
         component: SignIn,
-        layout: "/auth",
-      },
-      {
-        path: "/signup",
-        name: "Sign Up",
-        rtlName: "لوحة القيادة",
-        icon: <RocketIcon color="inherit" />,
-        secondaryNavbar: true,
-        component: SignUp,
-        layout: "/auth",
+        layout: "/admin",
       },
     ],
   },

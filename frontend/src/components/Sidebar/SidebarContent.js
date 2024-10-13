@@ -3,6 +3,7 @@
 import {
     Box,
     Button, Flex,
+    Image,
     Link,
     Stack,
     Text,
@@ -14,6 +15,7 @@ import { Separator } from "components/Separator/Separator";
 import { SidebarHelp } from "components/Sidebar/SidebarHelp";
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import logo from "../../assets/img/logo-removebg-preview.png";
 
 // this function creates the links and collapses that appear in the sidebar (left menu)
 
@@ -33,8 +35,8 @@ const SidebarContent = ({ logoText, routes }) => {
     // Chakra Color Mode
     const activeBg = useColorModeValue("white", "gray.700");
     const inactiveBg = useColorModeValue("white", "gray.700");
-    const activeColor = useColorModeValue("gray.700", "white");
-    const inactiveColor = useColorModeValue("gray.400", "gray.400");
+    const activeColor = useColorModeValue("#1e0a3c", "#1e0a3c");
+    const inactiveColor = useColorModeValue("#1e0a3c", "#1e0a3c");
 
     return routes.map((prop, key) => {
       if (prop.redirect) {
@@ -102,7 +104,7 @@ const SidebarContent = ({ logoText, routes }) => {
                   <Icon>{prop.icon}</Icon>
                 ) : (
                   <IconBox
-                    bg="teal.300"
+                    bg="#dd6633"
                     color="white"
                     h="30px"
                     w="30px"
@@ -153,7 +155,7 @@ const SidebarContent = ({ logoText, routes }) => {
                 ) : (
                   <IconBox
                     bg={inactiveBg}
-                    color="teal.300"
+                    color="#dd6633"
                     h="30px"
                     w="30px"
                     me="12px"
@@ -178,20 +180,21 @@ const SidebarContent = ({ logoText, routes }) => {
 
   return (
     <>
-        <Box pt={"25px"} mb="12px">
+        <Box pt={"10px"} mb="12px">
       <Link
         href={`${process.env.PUBLIC_URL}/#/`}
         target="_blank"
         display="flex"
         lineHeight="100%"
-        mb="30px"
+        mb="10px"
         fontWeight="bold"
         justifyContent="center"
         alignItems="center"
         fontSize="11px"
       >
-        <CreativeTimLogo w="32px" h="32px" me="10px" />
-        <Text fontSize="sm" mt="3px">
+        {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
+        <Image src={logo} alt="logo" w="80px" h="80px"/>
+        <Text fontSize="xl" mt="3px">
           {logoText}
         </Text>
       </Link>

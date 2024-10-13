@@ -21,12 +21,12 @@ import {
 import React from "react";
 import { rtlDashboardTableData, rtlTimelineData } from "variables/general";
 import ActiveUsers from "../Dashboard/components/ActiveUsers";
-import BuiltByDevelopers from "../Dashboard/components/BuiltByDevelopers";
+import BuiltByDevelopers from "../Dashboard/components/HighligthEventThisMonth";
 import MiniStatistics from "../Dashboard/components/MiniStatistics";
 import OrdersOverview from "../Dashboard/components/OrdersOverview";
 import Projects from "../Dashboard/components/Projects";
 import SalesOverview from "../Dashboard/components/SalesOverview";
-import WorkWithTheRockets from "../Dashboard/components/WorkWithTheRockets";
+import YourPerfectEventMatch from "../Dashboard/components/YourPerfectEventMatch";
 
 export default function Dashboard() {
   // Chakra Color Mode
@@ -80,7 +80,7 @@ export default function Dashboard() {
             />
           }
         />
-        <WorkWithTheRockets
+        <YourPerfectEventMatch
           backgroundImage={peopleImage}
           title={"العمل مع الصواريخ"}
           description={

@@ -11,7 +11,7 @@ export function SidebarHelp(props) {
     <Flex
       borderRadius="15px"
       flexDirection="column"
-      bgImage={SidebarHelpImage}
+      bg="#dd6633"
       justifyContent="flex-start"
       alignItems="start"
       boxSize="border-box"
@@ -20,7 +20,7 @@ export function SidebarHelp(props) {
       w="100%"
     >
       <IconBox width="35px" h="35px" bg="white" mb="auto">
-        <QuestionIcon color="teal.300" h="18px" w="18px" />
+        <QuestionIcon color="#dd6633" h="18px" w="18px" />
       </IconBox>
       <Text fontSize="sm" color="white" fontWeight="bold">
         Need help?
@@ -36,7 +36,7 @@ export function SidebarHelp(props) {
           fontSize="10px"
           fontWeight="bold"
           w="100%"
-          bg="white"
+          bg="#F3C623"
           _hover="none"
           _active={{
             bg: "white",
@@ -46,7 +46,7 @@ export function SidebarHelp(props) {
           _focus={{
             boxShadow: "none",
           }}
-          color="black"
+          color="white"
         >
           DOCUMENTATION
         </Button>

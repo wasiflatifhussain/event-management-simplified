@@ -9,7 +9,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import {
-  CreativeTimLogo,
   DocumentIcon,
   HomeIcon,
   PersonIcon,
@@ -79,7 +78,7 @@ export default function AuthNavbar(props) {
       alignItems="center"
       color={mainText}
     >
-      <CreativeTimLogo w="32px" h="32px" me="10px" />
+      {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
       <Text fontSize="sm" mt="3px">
         {logoText}
       </Text>
@@ -87,7 +86,7 @@ export default function AuthNavbar(props) {
   );
   var linksAuth = (
     <HStack display={{ sm: "none", lg: "flex" }}>
-      <NavLink to="/admin/dashboard">
+      <NavLink to="/admin/home">
         <Button
           fontSize="sm"
           ms="0px"

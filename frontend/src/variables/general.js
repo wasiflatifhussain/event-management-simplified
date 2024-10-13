@@ -346,7 +346,43 @@ export const billingData = [
     email: "ethan@fiber.com",
     number: "FRB1235476",
   },
-];
+  {
+    name: "Oliver Liam",
+    company: "Viking Burrito",
+    email: "oliver@burrito.com",
+    number: "FRB1235476",
+  },
+  {
+    name: "Lucas Harper",
+    company: "Stone Tech Zone",
+    email: "lucas@stone-tech.com",
+    number: "FRB1235476",
+  },
+  {
+    name: "Ethan James",
+    company: "Fiber Notion",
+    email: "ethan@fiber.com",
+    number: "FRB1235476",
+  },
+  {
+    name: "Oliver Liam",
+    company: "Viking Burrito",
+    email: "oliver@burrito.com",
+    number: "FRB1235476",
+  },
+  {
+    name: "Lucas Harper",
+    company: "Stone Tech Zone",
+    email: "lucas@stone-tech.com",
+    number: "FRB1235476",
+  },
+  {
+    name: "Ethan James",
+    company: "Fiber Notion",
+    email: "ethan@fiber.com",
+    number: "FRB1235476",
+  },
+];              
 
 export const newestTransactions = [
   {
