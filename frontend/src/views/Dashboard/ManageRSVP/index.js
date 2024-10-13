@@ -1,5 +1,5 @@
 // Chakra imports
-import { Box, Flex, Grid, Icon } from "@chakra-ui/react";
+import { Box, Flex, Grid, IconButton, Input, InputGroup, InputLeftElement, useColorModeValue, Text, Icon } from "@chakra-ui/react";
 // Assets
 import BackgroundCard1 from "assets/img/BackgroundCard1.png";
 import { MastercardIcon, VisaIcon } from "components/Icons/Icons";
@@ -10,6 +10,7 @@ import {
   billingData,
   invoicesData,
 } from "variables/general";
+import { SearchIcon } from "@chakra-ui/icons";
 
 
 import RSVPedEvents from "./components/RSVPedEvents";
@@ -19,74 +20,98 @@ import PaymentMethod from "./components/PaymentMethod";
 import PaymentStatistics from "./components/PaymentStatistics";
 import { SearchBar } from "components/Navbars/SearchBar/SearchBar";
 import { rsvpedEvents } from "./rsvpedEvents";
+import EventSearchResult from "./components/EventSearchResult";
 
 function ManageRSVP() {
+  const mainTeal = useColorModeValue("teal.300", "teal.300");
+  const searchIconColor = useColorModeValue("gray.700", "gray.200");
+  const inputBg = useColorModeValue("white", "gray.800");
   const [attending, setAttending] = useState(rsvpedEvents);
+  const [searchQuery, setSearchQuery] = useState("eid");
+
+  const filteredEvents = attending.filter(event =>
+    event.event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleRSVPOut = (eventId) => {
+    console.log(`RSVP Out clicked for eventId: ${eventId}`); // debug log
+  
+    // Filter out the event with the matching eventId
+    const updatedAttending = attending.filter(event => event.event.eventId !== eventId);
+  
+    // Update the attending state with the filtered array
+    setAttending(updatedAttending);
+    
+    console.log("Updated Attending List (after RSVP Out): ", updatedAttending);
+  };
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
-      <SearchBar />
-      <Grid templateColumns={{ sm: "1fr", lg: "2fr 1.2fr" }} templateRows='1fr'>
-        <Box>
-          <Grid
-            templateColumns={{
-              sm: "1fr",
-              md: "1fr 1fr",
-              xl: "1fr 1fr 1fr 1fr",
-            }}
-            templateRows={{ sm: "auto auto auto", md: "1fr auto", xl: "1fr" }}
-            gap='26px'>
-            <CreditCard
-              backgroundImage={BackgroundCard1}
-              title={"Purity UI"}
-              number={"7812 2139 0823 XXXX"}
-              validity={{
-                name: "VALID THRU",
-                data: "05/24",
-              }}
-              cvv={{
-                name: "CVV",
-                code: "09x",
-              }}
-              icon={
-                <Icon
-                  as={RiMastercardFill}
-                  w='48px'
-                  h='auto'
-                  color='gray.400'
-                />
-              }
-            />
-            <PaymentStatistics
-              icon={<Icon h={"24px"} w={"24px"} color='white' as={FaWallet} />}
-              title={"Salary"}
-              description={"Belong interactive"}
-              amount={2000}
-            />
-            <PaymentStatistics
-              icon={<Icon h={"24px"} w={"24px"} color='white' as={FaPaypal} />}
-              title={"Paypal"}
-              description={"Freelance Payment"}
-              amount={4550}
-            />
-          </Grid>
-          
-          <PaymentMethod
-            title={"Payment Method"}
-            mastercard={{
-              icon: <MastercardIcon w='100%' h='100%' />,
-              number: "7812 2139 0823 XXXX",
-            }}
-            visa={{
-              icon: <VisaIcon w='100%' h='100%' />,
-              number: "7812 2139 0823 XXXX",
-            }}
+
+      {/* Search Bar Start */}
+      <Flex justifyContent="center">
+        <InputGroup
+          bg={inputBg}
+          borderRadius="15px"
+          w="800px"
+          mb={4} 
+          _focus={{
+            borderColor: { mainTeal },
+          }}
+          _active={{
+            borderColor: { mainTeal },
+          }}
+        >
+          <InputLeftElement
+            children={
+              <IconButton
+                bg="inherit"
+                borderRadius="inherit"
+                _hover="none"
+                _active={{
+                  bg: "inherit",
+                  transform: "none",
+                  borderColor: "transparent",
+                }}
+                _focus={{
+                  boxShadow: "none",
+                }}
+                icon={<SearchIcon color={searchIconColor} w="15px" h="15px" />}
+              />
+            }
           />
+          <Input
+            fontSize="xs"
+            py="11px"
+            placeholder="Search RSVPed events..."
+            borderRadius="inherit"
+            onChange={(e) => setSearchQuery(e.target.value)} // update search query on input change
+          />
+        </InputGroup>
+      </Flex>
+      {/* Search Bar Ends */}
+
+
+      {/* Display search results using EventSearchResult */}
+      {searchQuery && (
+        <Box mt={4} bg="gray.50" p={0} borderRadius="md">
+          <Text fontWeight="bold" mb={2} fontSize="lg" color="#1e0a3c">
+            Search Results/Recent RSVP:
+          </Text>
+          {filteredEvents.length > 0 ? (
+            filteredEvents.map((event) => (
+              <EventSearchResult key={event.eventId} event={event.event} onRSVPOut={handleRSVPOut} />
+            ))
+          ) : (
+            <Flex justifyContent="center" mb={4}>
+              <Text color="#dd6633" fontWeight="bold">No events found / Search something (else)</Text>
+            </Flex>
+          )}
         </Box>
-        <Invoices title={"Invoices"} data={invoicesData} />
-      </Grid>
+      )}
+
       <Grid templateColumns={{ sm: "1fr", lg: "1fr" }}>
-        <RSVPedEvents title={"Your RSVPed Events"} attending={attending} setAttending={setAttending} />
+        <RSVPedEvents title={"Your RSVPed Events"} attending={attending} setAttending={setAttending} handleRSVPOut={handleRSVPOut} />
       </Grid>
     </Flex>
   );
