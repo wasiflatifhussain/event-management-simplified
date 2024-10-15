@@ -96,3 +96,11 @@ To run the frontend server, navigate to the `frontend` directory and start the s
 cd frontend
 npm start
 ```
+
+
+## Sample Images
+<img width="1467" alt="Screenshot 2024-10-15 at 11 56 53 PM" src="https://github.com/user-attachments/assets/7f37a7aa-f8e9-44d9-9677-d1a00b6f558c">
+<img width="1469" alt="Screenshot 2024-10-15 at 11 57 16 PM" src="https://github.com/user-attachments/assets/277150ba-4e24-4687-9424-4fd024bb0a21">
+<img width="1469" alt="Screenshot 2024-10-15 at 11 57 28 PM" src="https://github.com/user-attachments/assets/6f3a9110-7da0-4ba6-bc5f-6504ccf662dd">
+
+
