@@ -17,6 +17,18 @@ const getEvents = async (req, res) => {
     const monthNumber = Number(month);
     
     const events = await Event.find({ month: monthNumber });
+  
+    res.status(200).json(events);
+  } catch (error) {
+    res.status(500).json({ message: "Error retrieving events", error: error.message });
+  }
+};
+
+const getFirst50Events = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const events = await Event.find({ rsvpedUserIds: { $ne: userId } }).limit(50);
+    console.log(events);
 
     res.status(200).json(events);
   } catch (error) {
@@ -24,4 +36,4 @@ const getEvents = async (req, res) => {
   }
 };
 
-module.exports = { addEvent, getEvents };
+module.exports = { addEvent, getEvents, getFirst50Events };

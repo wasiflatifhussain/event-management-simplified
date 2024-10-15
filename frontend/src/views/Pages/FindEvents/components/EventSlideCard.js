@@ -5,6 +5,7 @@ import eventimage from "../../../../assets/img/eid.jpg"; // Sample event image
 
 const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
   // Format date and time
+  const userId = localStorage.getItem("userId");
   const startDate = new Date(event.dateTimeStart);
   const eventDay = startDate.getDate();
   const eventMonth = startDate.toLocaleString('default', { month: 'long' });
@@ -26,6 +27,7 @@ const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
       bgGradient="linear(to-t, #fae69d 5%, #dd6633 90%)"
       width="90%" // Set a fixed width to resemble a card
       textAlign="center"
+      minHeight="52vh"
     >
       {/* Top Section: Event Image */}
       <Image 
@@ -51,13 +53,13 @@ const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
 
       {/* Bottom Section: RSVP Button */}
       <Flex justifyContent="center" mt={4}>
-        {attendStatus ? (
+        { event.rsvpedUserIds.includes(userId) ? (
           <Button
             p="0px"
             bg="transparent"
             border="1px solid"
             borderRadius="full"
-            onClick={() => onRSVPOut(event.eventId)} // Trigger RSVP out
+            onClick={() => onRSVPOut(event._id)} // Trigger RSVP out
             width="full"
           >
             <Flex color={rsvptextColor} cursor="pointer" align="center" p="12px">
@@ -73,7 +75,7 @@ const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
             bg="transparent"
             border="1px solid"
             borderRadius="full"
-            onClick={() => onRSVPIn(event.eventId)} // Trigger RSVP in
+            onClick={() => onRSVPIn(event._id)} // Trigger RSVP in
             width="full"
           >
             <Flex color={rsvptextColor} cursor="pointer" align="center" p="12px">

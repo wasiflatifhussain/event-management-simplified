@@ -1,6 +1,6 @@
 // Chakra imports
 import { Box, Flex, IconButton, Input, InputGroup, InputLeftElement, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { allEvents } from "./allEvents"; // Assuming this is the list of events
 import { SearchIcon } from "@chakra-ui/icons";
 import EventSearched from "./components/EventSearched"; // Import the EventSearched component
@@ -11,9 +11,15 @@ import { Swiper, SwiperSlide } from "swiper/react"; // Swiper.js
 import { Navigation } from "swiper/modules"; 
 import "swiper/css"; // import Swiper's base styles
 import "swiper/css/navigation"; // import Swiper's navigation styles
+import { getFirst50Events } from "api/eventApi";
+import { signUpForEvent } from "api/userApi";
+import { rsvpOutFromEvent } from "api/userApi";
 
 function FindEvents() {
-  const [allCurrEvents, setAllCurrEvents] = useState(allEvents);
+  const userId = localStorage.getItem("userId");
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
+  const [allCurrEvents, setAllCurrEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("eid");
   const mainTeal = useColorModeValue("teal.300", "teal.300");
   const searchIconColor = useColorModeValue("gray.700", "gray.200");
@@ -21,36 +27,84 @@ function FindEvents() {
 
   // filter the events based on the search query
   const filteredEvents = allCurrEvents.filter(event =>
-    event.event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+    event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // handle RSVP In:set attendStatus to true
-  const handleRSVPIn = (eventId) => {
-    const updatedEvents = allCurrEvents.map(event => {
-      if (event.event.eventId === eventId) {
-        return {
-          ...event,
-          attendStatus: true, // RSVP in
-        };
+  const handleRSVPIn = async (eventId) => {
+      try {
+        const addStatus = await signUpForEvent(eventId, userId);
+        if (addStatus.message === "User signed up for the event successfully") {
+            const updatedEvents = allCurrEvents.map(event => {
+            if (event._id === eventId) {
+              return {
+              ...event,
+              rsvpedUserIds: [...event.rsvpedUserIds, userId], // Add userId to rsvpedUserIds
+              };
+            }
+            return event;
+            });
+            setAllCurrEvents(updatedEvents);
+            console.log(addStatus.message);
+        }
+        else {
+            console.log(addStatus.message);
+        }
       }
-      return event;
-    });
-    setAllCurrEvents(updatedEvents);
-  };
+      catch (error) {
+        console.error('Error signing up for event:', error);
+      }
+}
 
   // handle RSVP Out: Set attendStatus to false
-  const handleRSVPOut = (eventId) => {
-    const updatedEvents = allCurrEvents.map(event => {
-      if (event.event.eventId === eventId) {
-        return {
-          ...event,
-          attendStatus: false, // RSVP out
-        };
+  const handleRSVPOut = async (eventId) => {
+    try {
+      const removeStatus = await rsvpOutFromEvent(eventId, userId);
+      if (removeStatus.message === "User rsvp-out from the event successfully") {
+        const updatedEvents = allCurrEvents.map(event => {
+          if (event._id === eventId) {
+            return {
+              ...event,
+              rsvpedUserIds: event.rsvpedUserIds.filter(id => id !== userId), // Remove userId from rsvpedUserIds
+            };
+          }
+          return event;
+        });
+        setAllCurrEvents(updatedEvents);
+        console.log(removeStatus.message);
       }
-      return event;
-    });
-    setAllCurrEvents(updatedEvents);
+      else {
+        console.log(removeStatus.message);
+      }
+    } catch (error) {
+      console.error('Error RSVPing out from event:', error);
+    }
+    
   };
+
+  useEffect(() => {
+    const getTopEvents = async () => {
+
+      try {
+        setLoading(true);
+        const events = await getFirst50Events(userId);
+        setAllCurrEvents(events);
+        setSearchQuery(events[0].eventName); 
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getTopEvents();
+  }, []);
+
+  if (loading) {
+    return <p>Loading events...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <Flex direction="column" pt={{ base: "120px", md: "75px" }}>
@@ -106,11 +160,11 @@ function FindEvents() {
           {filteredEvents.length > 0 ? (
             filteredEvents.map((event) => (
               <EventSearched
-                key={event.event.eventId}
-                event={event.event}
+                key={event._id}
+                event={event}
                 attendStatus={event.attendStatus}
-                onRSVPIn={handleRSVPIn}
-                onRSVPOut={handleRSVPOut}
+                onRSVPIn={()=>handleRSVPIn(event._id)}
+                onRSVPOut={()=>handleRSVPOut(event._id)}
               />
             ))
           ) : (
@@ -146,7 +200,7 @@ function FindEvents() {
           {allCurrEvents.map((event, index) => (
             <SwiperSlide key={index}>
             <EventSlideCard 
-              event={event.event} 
+              event={event} 
               attendStatus={event.attendStatus} // Pass attendStatus here
               onRSVPIn={handleRSVPIn} // Pass the handler
               onRSVPOut={handleRSVPOut} // Pass the handler
