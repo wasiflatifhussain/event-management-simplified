@@ -28,14 +28,13 @@ import React, { useState } from "react";
 
 const EventCard = ({ event }) => {
   const toast = useToast();
-  const bgColor = event.attendStatus
+  const userId = localStorage.getItem("userId");
+  const bgColor = event.rsvpedUserIds.includes(userId)
     ? useColorModeValue("green.200", "green.700")  // Softer green background
     : useColorModeValue("blue.200", "blue.700");  // Softer blue background
   const textColor = useColorModeValue("black.700", "white");
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedSlots, setSelectedSlots] = useState([]);
-  const [selectedTasks, setSelectedTasks] = useState([]);
 
   const [openForm, setOpenForm] = useState(null);
 
@@ -71,9 +70,6 @@ const EventCard = ({ event }) => {
       event.updateAttendStatus(true);  // Set the status to true
     }
 
-    console.log("Selected Slots:", selectedSlots);
-    console.log("Selected Tasks:", selectedTasks);
-
     toast({
       title: "Event Sign Up Successful!",
       description: "You have successfully signed up for the event.",
@@ -105,29 +101,29 @@ const EventCard = ({ event }) => {
           transform: "scale(1.05)", // Slight zoom on hover
         }}
         onClick={handleEventClick}
-      >
+            >
         <CardBody>
           <Flex flexDirection='row' align='center' justify='center' w='100%'>
             <Stat me='auto'>
               <StatLabel
-                fontSize='sm'
-                color='black'
-                fontWeight=''
-                pb=''>
-                {event.dateTimeStart} - {event.dateTimeEnd}
+          fontSize='sm'
+          color='black'
+          fontWeight=''
+          pb=''>
+          {new Date(event.dateTimeStart).toLocaleTimeString()} - {new Date(event.dateTimeEnd).toLocaleTimeString()}
               </StatLabel>
               <Flex>
-                <StatNumber fontSize='md' color={textColor}>
-                  {event.eventName}
-                </StatNumber>
+          <StatNumber fontSize='md' color={textColor}>
+            {event.eventName.slice(0, 14) + '...'}
+          </StatNumber>
               </Flex>
             </Stat>
           </Flex>
         </CardBody>
-      </Card>
+            </Card>
 
-    {openForm === "checkInfo" && (
-      {/* <EventCheckInfoPopUpForm 
+          {openForm === "checkInfo" && (
+            {/* <EventCheckInfoPopUpForm 
         isOpen={isOpen} 
         onClose={onClose} 
         event={event} 
@@ -137,7 +133,7 @@ const EventCard = ({ event }) => {
         handleTaskChange={handleTaskChange} 
         handleSubmit={handleSubmit}
         handleRSVPOut={handleRSVPOut}
-      /> */}
+            /> */}
     )}
 
     {openForm === "signUp" && (

@@ -6,6 +6,7 @@ import { FaTrashAlt, FaCheck } from "react-icons/fa"; // Icons for RSVP buttons
 import eventimage from "../../../../assets/img/eid.jpg"; // Sample event image
 
 const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
+  const userId = localStorage.getItem("userId");
   const rsvptextColor = useColorModeValue("#f0bc02", "white");
   const textColor = useColorModeValue("#1e0a3c", "white");
   const eventBgColor = useColorModeValue("white", "#1e0a3c");
@@ -20,7 +21,7 @@ const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
   const eventDateString = `${eventDay} ${eventMonth}, ${startTime} - ${endTime}`;
 
   return (
-    <Card minHeight="290.5px" p="1.2rem" bg={eventBgColor} borderRadius="15px">
+    <Card minHeight="290.5px" p="1.2rem" bg={eventBgColor} borderRadius="15px" mb="1rem">
       <CardBody w="100%">
         <Flex flexDirection={{ sm: "column", lg: "row" }} w="100%" h="100%" alignItems="stretch">
           {/* Left Section: Event Information */}
@@ -51,11 +52,11 @@ const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
               </Box>
 
               {/* Conditionally Render RSVP In or RSVP Out */}
-              {attendStatus ? (
+              {event.rsvpedUserIds.includes(userId) ? (
                 <Button
                   p="0px"
                   bg="transparent"
-                  onClick={() => onRSVPOut(event.eventId)} // Trigger RSVP out
+                  onClick={() => onRSVPOut(event._id)} // Trigger RSVP out
                 >
                   <Flex color={rsvptextColor} cursor="pointer" align="center" p="12px">
                     <Icon as={FaTrashAlt} me="4px" />
@@ -68,7 +69,7 @@ const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
                 <Button
                   p="0px"
                   bg="transparent"
-                  onClick={() => onRSVPIn(event.eventId)} // Trigger RSVP in
+                  onClick={() => onRSVPIn(event._id)} // Trigger RSVP in
                 >
                   <Flex color="#dd6633" cursor="pointer" align="center" p="12px">
                     <Icon as={FaCheck} me="4px" />

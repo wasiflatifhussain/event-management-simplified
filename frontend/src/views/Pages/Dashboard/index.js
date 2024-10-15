@@ -41,7 +41,9 @@ export default function Home() {
       try {
         setLoading(true);
         const events = await getEvents(currentMonth);
-        setEvents(events);
+        if (events.length > 0) {
+          setEvents(events);
+        }
       } catch (error) {
         setError(error);
       } finally {
@@ -154,7 +156,7 @@ export default function Home() {
         my="-55px"
         gap="24px"
       >
-        <Box width="100%" height="auto" paddingBottom={10}>
+        <Box width="152%" height="auto" paddingBottom={10}>
           <CustomCalendar
             events={events.map(event => ({
               ...event,
@@ -163,38 +165,6 @@ export default function Home() {
           />
         </Box>
       </Grid>
-      {/* <Grid
-        templateColumns={{ sm: "1fr", lg: "1.3fr 1.7fr" }}
-        templateRows={{ sm: "repeat(2, 1fr)", lg: "1fr" }}
-        gap='24px'
-        mb={{ lg: "26px" }}>
-        <ActiveUsers
-          title={"Active Users"}
-          percentage={23}
-          chart={<BarChart />}
-        />
-        <SalesOverview
-          title={"Sales Overview"}
-          percentage={5}
-          chart={<LineChart />}
-        />
-      </Grid>
-      <Grid
-        templateColumns={{ sm: "1fr", md: "1fr 1fr", lg: "2fr 1fr" }}
-        templateRows={{ sm: "1fr auto", md: "1fr", lg: "1fr" }}
-        gap='24px'>
-        <Projects
-          title={"Projects"}
-          amount={30}
-          captions={["Companies", "Members", "Budget", "Completion"]}
-          data={dashboardTableData}
-        />
-        <OrdersOverview
-          title={"Orders Overview"}
-          amount={30}
-          data={timelineData}
-        />
-      </Grid> */}
     </Flex>
   );
 }

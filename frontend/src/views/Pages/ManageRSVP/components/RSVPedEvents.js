@@ -43,7 +43,7 @@ const RSVPedEvents = ({ title, attending, setAttending, handleRSVPOut }) => {
             {currentData.map((row, index) => (
               <RSVPedEventsRow
                 key={index} // Use index for key since data may not have unique ID
-                row={row.event}
+                row={row}
                 handleRSVPOut={handleRSVPOut}
               />
             ))}

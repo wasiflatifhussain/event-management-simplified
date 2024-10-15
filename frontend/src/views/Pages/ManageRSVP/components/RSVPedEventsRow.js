@@ -58,7 +58,7 @@ function RSVPedEventsRow({row, handleRSVPOut}) {
             bg="transparent"
             mb={{ sm: "10px", md: "0px" }}
             me={{ md: "12px" }}
-            onClick={() => handleRSVPOut(row.eventId)}
+            onClick={() => handleRSVPOut(row._id)}
           >
             <Flex color={textColor} cursor="pointer" align="center" p="12px">
               <Icon as={FaTrashAlt} me="4px" />

@@ -1,36 +1,62 @@
 // Chakra imports
 import { Box, Flex, Grid, IconButton, Input, InputGroup, InputLeftElement, useColorModeValue, Text, Icon } from "@chakra-ui/react";
 // Assets
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 
 import RSVPedEvents from "./components/RSVPedEvents";
 import { rsvpedEvents } from "./rsvpedEvents";
 import EventSearchResult from "./components/EventSearchResult";
+import { getFirst50AttendingEvents } from "api/eventApi";
+import { rsvpOutFromEvent } from "api/userApi";
 
 function ManageRSVP() {
+  const userId = localStorage.getItem("userId");
   const mainTeal = useColorModeValue("teal.300", "teal.300");
   const searchIconColor = useColorModeValue("gray.700", "gray.200");
   const inputBg = useColorModeValue("white", "gray.800");
-  const [attending, setAttending] = useState(rsvpedEvents);
+  const [attending, setAttending] = useState([]);
   const [searchQuery, setSearchQuery] = useState("eid");
+  const [loading, setLoading] = useState(true);
 
   const filteredEvents = attending.filter(event =>
-    event.event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
+    event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleRSVPOut = (eventId) => {
-    console.log(`RSVP Out clicked for eventId: ${eventId}`); // debug log
-  
-    // Filter out the event with the matching eventId
-    const updatedAttending = attending.filter(event => event.event.eventId !== eventId);
-  
-    // Update the attending state with the filtered array
-    setAttending(updatedAttending);
+  const handleRSVPOut = async (eventId) => {
+    try {
+      const removeStatus = await rsvpOutFromEvent(eventId, userId);
+      if (removeStatus.message === "User rsvp-out from the event successfully") {
+        const updatedEvents = attending.filter(event => event._id !== eventId);
+        setAttending(updatedEvents);
+        setSearchQuery(updatedEvents[0].eventName);
+        console.log(removeStatus.message);
+      }
+      else {
+        console.log(removeStatus.message);
+      }
+    } catch (error) {
+      console.error('Error RSVPing out from event:', error);
+    }
     
-    console.log("Updated Attending List (after RSVP Out): ", updatedAttending);
   };
+
+  useEffect(() => {
+    const getRSVPedEvents = async () => {
+      try {
+        setLoading(true);
+        const events = await getFirst50AttendingEvents(userId);
+        if (events.length > 0) {
+          setAttending(events);
+          setSearchQuery(events[0].eventName); 
+        }
+      } catch (error) {
+        setError(error);
+      } 
+    }
+    getRSVPedEvents();
+  }, []);
 
   return (
     <Flex direction='column' pt={{ base: "120px", md: "75px" }}>
@@ -87,7 +113,7 @@ function ManageRSVP() {
           </Text>
           {filteredEvents.length > 0 ? (
             filteredEvents.map((event) => (
-              <EventSearchResult key={event.eventId} event={event.event} onRSVPOut={handleRSVPOut} />
+              <EventSearchResult key={event._id} event={event} onRSVPOut={handleRSVPOut} />
             ))
           ) : (
             <Flex justifyContent="center" mb={4}>
