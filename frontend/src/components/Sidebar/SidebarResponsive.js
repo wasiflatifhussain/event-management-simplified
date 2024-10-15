@@ -195,7 +195,6 @@ function SidebarResponsive(props) {
       <Box pt={"10px"} mb="8px">
         <Link
           href={`${process.env.PUBLIC_URL}/#/`}
-          target="_blank"
           display="flex"
           lineHeight="100%"
           mb="10px"

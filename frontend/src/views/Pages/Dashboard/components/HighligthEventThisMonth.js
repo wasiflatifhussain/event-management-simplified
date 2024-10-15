@@ -17,8 +17,8 @@ import { BsArrowRight } from "react-icons/bs";
 const HighligthEventThisMonth = ({ title, name, description, image, highlightEvent }) => {
   const textColor = useColorModeValue("gray.700", "white");
 
-  const startDate = new Date(highlightEvent.dateTimeStartMap);
-  const endDate = new Date(highlightEvent.dateTimeEndMap);
+  const startDate = new Date(highlightEvent.dateTimeStart);
+  const endDate = new Date(highlightEvent.dateTimeEnd);
 
   const eventDay = startDate.getDate();
   const eventMonth = startDate.toLocaleString('default', { month: 'long' });

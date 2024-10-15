@@ -5,11 +5,11 @@ import eventimage from "../../../../assets/img/eid.jpg"; // Sample event image
 
 const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
   // Format date and time
-  const startDate = new Date(event.dateTimeStartMap);
+  const startDate = new Date(event.dateTimeStart);
   const eventDay = startDate.getDate();
   const eventMonth = startDate.toLocaleString('default', { month: 'long' });
   const startTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
-  const endTime = new Date(event.dateTimeEndMap).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+  const endTime = new Date(event.dateTimeEnd).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   const eventDateString = `${eventDay} ${eventMonth}, ${startTime} - ${endTime}`;
 
   // Chakra UI color scheme

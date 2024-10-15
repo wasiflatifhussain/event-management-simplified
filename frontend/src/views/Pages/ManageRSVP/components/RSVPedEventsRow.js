@@ -14,8 +14,8 @@ function RSVPedEventsRow({row, handleRSVPOut}) {
   const bgColor = useColorModeValue("#F4F6FF", "gray.800");
   const nameColor = useColorModeValue("#dd6633", "white");
 
-  const startDate = new Date(row.dateTimeStartMap);
-  const endDate = new Date(row.dateTimeEndMap);
+  const startDate = new Date(row.dateTimeStart);
+  const endDate = new Date(row.dateTimeEnd);
 
   const eventDay = startDate.getDate();
   const eventMonth = startDate.toLocaleString('default', { month: 'long' });

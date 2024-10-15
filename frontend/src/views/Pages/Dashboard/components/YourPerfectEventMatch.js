@@ -17,8 +17,8 @@ import { BsArrowRight } from "react-icons/bs";
 
 const YourPerfectEventMatch = ({ title, description, backgroundImage, perfectMatchEvent }) => {
   const overlayRef = React.useRef();
-  const startDate = new Date(perfectMatchEvent.dateTimeStartMap);
-  const endDate = new Date(perfectMatchEvent.dateTimeEndMap);
+  const startDate = new Date(perfectMatchEvent.dateTimeStart);
+  const endDate = new Date(perfectMatchEvent.dateTimeEnd);
 
   const eventDay = startDate.getDate();
   const eventMonth = startDate.toLocaleString('default', { month: 'long' });

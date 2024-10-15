@@ -34,7 +34,6 @@ export default function Footer(props) {
         <Link
           color="teal.400"
           href="#"
-          target="_blank"
         >
           Gatherly
         </Link>

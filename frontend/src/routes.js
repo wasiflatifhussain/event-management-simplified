@@ -1,9 +1,9 @@
 // import
-import Home from "views/Dashboard/Dashboard";
-import FindEvents from "views/Dashboard/FindEvents";
-import ManageRSVP from "views/Dashboard/ManageRSVP";
-import RTLPage from "views/Dashboard/RTL";
-import Profile from "views/Dashboard/Profile";
+import Home from "views/Pages/Dashboard";
+import FindEvents from "views/Pages/FindEvents";
+import ManageRSVP from "views/Pages/ManageRSVP";
+import RTLPage from "views/Pages/RTL";
+import Profile from "views/Pages/Profile";
 import SignIn from "views/Auth/SignIn.js";
 import SignUp from "views/Auth/SignUp.js";
 

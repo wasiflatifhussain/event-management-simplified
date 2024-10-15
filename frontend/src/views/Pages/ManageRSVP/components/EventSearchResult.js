@@ -2,17 +2,17 @@ import React from "react";
 import { Button, Flex, Text, Box, useColorModeValue, Icon, Spacer, Image } from "@chakra-ui/react";
 import Card from "components/Card/Card.js"; // Reusing your existing Card component
 import CardBody from "components/Card/CardBody.js";
-import { FaTrashAlt, FaCheck } from "react-icons/fa"; // Icons for RSVP buttons
+import { FaTrashAlt } from "react-icons/fa";
 import eventimage from "../../../../assets/img/eid.jpg"; // Sample event image
 
-const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
+const EventSearchResult = ({ event, onRSVPOut }) => {
   const rsvptextColor = useColorModeValue("#f0bc02", "white");
   const textColor = useColorModeValue("#1e0a3c", "white");
   const eventBgColor = useColorModeValue("white", "#1e0a3c");
-
-  const startDate = new Date(event.dateTimeStartMap);
-  const endDate = new Date(event.dateTimeEndMap);
-
+  
+  const startDate = new Date(event.dateTimeStart);
+  const endDate = new Date(event.dateTimeEnd);
+  
   const eventDay = startDate.getDate();
   const eventMonth = startDate.toLocaleString('default', { month: 'long' });
   const startTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
@@ -50,44 +50,27 @@ const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
                 </Text>
               </Box>
 
-              {/* Conditionally Render RSVP In or RSVP Out */}
-              {attendStatus ? (
-                <Button
-                  p="0px"
-                  bg="transparent"
-                  onClick={() => onRSVPOut(event.eventId)} // Trigger RSVP out
-                >
-                  <Flex color={rsvptextColor} cursor="pointer" align="center" p="12px">
-                    <Icon as={FaTrashAlt} me="4px" />
-                    <Text fontSize="sm" fontWeight="semibold">
-                      RSVP Out
-                    </Text>
-                  </Flex>
-                </Button>
-              ) : (
-                <Button
-                  p="0px"
-                  bg="transparent"
-                  onClick={() => onRSVPIn(event.eventId)} // Trigger RSVP in
-                >
-                  <Flex color="#dd6633" cursor="pointer" align="center" p="12px">
-                    <Icon as={FaCheck} me="4px" />
-                    <Text fontSize="sm" fontWeight="semibold">
-                      RSVP In
-                    </Text>
-                  </Flex>
-                </Button>
-              )}
+              {/* RSVP Out Button */}
+              <Button
+                p="0px"
+                bg="transparent"
+                onClick={() => onRSVPOut(event.eventId)} // Trigger RSVP out
+              >
+                <Flex color={rsvptextColor} cursor="pointer" align="center" p="12px">
+                  <Icon as={FaTrashAlt} me="4px" />
+                  <Text fontSize="sm" fontWeight="semibold">
+                    RSVP Out
+                  </Text>
+                </Flex>
+              </Button>
             </Flex>
           </Flex>
-
           <Flex
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
             width={{ lg: "10%" }}
           ></Flex>
-
           {/* Right Section: Event Image */}
           <Flex
             flexDirection="column"
@@ -124,4 +107,4 @@ const EventSearched = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
   );
 };
 
-export default EventSearched;
+export default EventSearchResult;

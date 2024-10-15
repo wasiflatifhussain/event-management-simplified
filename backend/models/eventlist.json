@@ -1,0 +1,145 @@
+[
+  {
+    "eventName": "Eid Ul Adha",
+    "eventDescription": "Join us for a joyous Eid Ul Adha celebration filled with love, sacrifice, and community spirit. Experience the warmth of togetherness with special Eid prayers, a community feast featuring traditional dishes, charity and Qurbani distribution, and family-friendly activities. Come together at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 22nd from 7:00 PM to 10:00 PM.",
+    "dateTimeStart": "2024-10-22T19:00:00",
+    "dateTimeEnd": "2024-10-22T22:00:00",
+    "date": "2024-10-22",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 300,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Diwali Night 2024",
+    "eventDescription": "Celebrate the Festival of Lights with an evening filled with joy, color, and festive activities. Experience the warmth of the community, enjoy spectacular cultural performances, indulge in a traditional Diwali feast, and participate in the beautiful lantern lighting ceremony. There will also be fun games and engaging activities for all ages. Don’t miss this unforgettable celebration at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 30th from 6:00 PM to 10:00 PM.",
+    "dateTimeStart": "2024-10-30T18:00:00",
+    "dateTimeEnd": "2024-10-30T22:00:00",
+    "date": "2024-10-30",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, No. 1 Kwai Hei Street, Kwai Chung, Hong Kong",
+    "capacity": 80,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Christmas Gala",
+    "eventDescription": "Join us for a magical Christmas Gala filled with festive cheer, delicious food, and heartwarming performances. Enjoy a night of caroling, a sumptuous Christmas feast, and a visit from Santa Claus. The event will take place at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 24th from 6:00 PM to 11:00 PM.",
+    "dateTimeStart": "2024-10-24T18:00:00",
+    "dateTimeEnd": "2024-10-24T23:00:00",
+    "date": "2024-10-24",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 150,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "New Year's Eve",
+    "eventDescription": "Ring in the New Year with a spectacular party featuring live music, dancing, and a midnight countdown. Enjoy a night of celebration with friends and family, complete with a buffet dinner and a fireworks display. Join us at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 31st from 8:00 PM to 1:00 AM.",
+    "dateTimeStart": "2024-10-31T20:00:00",
+    "dateTimeEnd": "2024-11-01T01:00:00",
+    "date": "2024-10-31",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 200,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Chinese New Year",
+    "eventDescription": "Celebrate the Chinese New Year with a vibrant event featuring traditional lion dances, cultural performances, and a delicious feast. Join us for an evening of festivities and community spirit at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 10th from 5:00 PM to 9:00 PM.",
+    "dateTimeStart": "2024-10-10T17:00:00",
+    "dateTimeEnd": "2024-10-10T21:00:00",
+    "date": "2024-10-10",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 250,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Valentine's Day",
+    "eventDescription": "Celebrate love with a romantic Valentine's Day dinner featuring a gourmet meal, live music, and a beautiful ambiance. Join us for an unforgettable evening at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 14th from 7:00 PM to 10:00 PM.",
+    "dateTimeStart": "2024-10-14T19:00:00",
+    "dateTimeEnd": "2024-10-14T22:00:00",
+    "date": "2024-10-14",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 100,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Spring Festival",
+    "eventDescription": "Welcome the arrival of spring with a lively festival featuring outdoor activities, food stalls, and cultural performances. Join us for a day of fun and celebration at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 20th from 10:00 AM to 4:00 PM.",
+    "dateTimeStart": "2024-10-20T10:00:00",
+    "dateTimeEnd": "2024-10-20T16:00:00",
+    "date": "2024-10-20",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 500,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Summer Beach Party",
+    "eventDescription": "Join us for a fun-filled Summer Beach Party with games, music, and a BBQ. Enjoy a day at the beach with friends and family at Repulse Bay Beach, Hong Kong, on October 15th from 11:00 AM to 5:00 PM.",
+    "dateTimeStart": "2024-10-15T11:00:00",
+    "dateTimeEnd": "2024-10-15T17:00:00",
+    "date": "2024-10-15",
+    "month": 10,
+    "location": "Repulse Bay Beach, Hong Kong",
+    "capacity": 300,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Tech Innovators Conference",
+    "eventDescription": "Join industry leaders and tech enthusiasts for a day of insightful talks, networking, and innovation showcases. Discover the latest trends in technology and gain valuable insights from experts at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 5th from 9:00 AM to 5:00 PM.",
+    "dateTimeStart": "2024-10-05T09:00:00",
+    "dateTimeEnd": "2024-10-05T17:00:00",
+    "date": "2024-10-05",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 400,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Gourmet Cooking Workshop",
+    "eventDescription": "Learn the art of gourmet cooking from renowned chefs in a hands-on workshop. Enjoy a day of culinary creativity and delicious food at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 12th from 10:00 AM to 2:00 PM.",
+    "dateTimeStart": "2024-10-12T10:00:00",
+    "dateTimeEnd": "2024-10-12T14:00:00",
+    "date": "2024-10-12",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 50,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Health and Wellness Expo",
+    "eventDescription": "Explore the latest in health and wellness at our expo featuring workshops, product demonstrations, and expert talks. Join us at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 18th from 10:00 AM to 6:00 PM.",
+    "dateTimeStart": "2024-10-18T10:00:00",
+    "dateTimeEnd": "2024-10-18T18:00:00",
+    "date": "2024-10-18",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 300,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Art and Craft Fair",
+    "eventDescription": "Discover unique handmade crafts and artworks from local artists at our Art and Craft Fair. Enjoy a day of creativity and inspiration at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 25th from 11:00 AM to 7:00 PM.",
+    "dateTimeStart": "2024-10-25T11:00:00",
+    "dateTimeEnd": "2024-10-25T19:00:00",
+    "date": "2024-10-25",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 200,
+    "rsvpedUserIds": []
+  },
+  {
+    "eventName": "Business Networking Evening",
+    "eventDescription": "Expand your professional network at our Business Networking Evening. Meet industry professionals, exchange ideas, and build valuable connections at Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong, on October 28th from 6:00 PM to 9:00 PM.",
+    "dateTimeStart": "2024-10-28T18:00:00",
+    "dateTimeEnd": "2024-10-28T21:00:00",
+    "date": "2024-10-28",
+    "month": 10,
+    "location": "Unit 5F, High Fashion Centre, Kwai Chung, Hong Kong",
+    "capacity": 150,
+    "rsvpedUserIds": []
+  }
+]

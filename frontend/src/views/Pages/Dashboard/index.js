@@ -13,15 +13,51 @@ import peopleImage from "assets/img/friends2.jpg";
 
 import highlightEventImage from "assets/img/diwali.jpg";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HighligthEventThisMonth from "./components/HighligthEventThisMonth";
 import YourPerfectEventMatch from "./components/YourPerfectEventMatch";
 import CustomCalendar from "./components/CustomCalender";
 import {events as initialEvents} from "./events";
+import { getEvents } from "api/eventApi";
 
 export default function Home() {
   const iconBoxInside = useColorModeValue("white", "white");
-  const [events, setEvents] = useState(initialEvents);
+
+  const [events, setEvents] = useState(); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
+  const [monthString, setMonthString] = useState(""); 
+
+  useEffect(() => {
+    const getAllEventsThisMonth = async () => {
+      const currentMonth = new Date().getMonth() + 1;
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      const currentMonthName = monthNames[new Date().getMonth()];
+      setMonthString(currentMonthName);
+
+      try {
+        setLoading(true);
+        const events = await getEvents(currentMonth);
+        setEvents(events);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getAllEventsThisMonth();
+  }, []);
+
+  if (loading) {
+    return <p>Loading events...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <Flex flexDirection='column' pt={{ base: "120px", md: "75px" }}>
@@ -71,7 +107,7 @@ export default function Home() {
           <Flex alignItems="center" justifyContent="space-between" mt={1} border="#dd6633 1px solid" borderRadius={12} pl={3} pr={5} pt={2} pb={2}>
             <Box>
               <Text fontSize="xl" fontWeight="bold" color="#dd6633">
-                Month: August 2024
+                Month: {monthString} 2024
               </Text>
             </Box>
             <Flex alignItems="center">
