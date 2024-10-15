@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Chakra imports
 import {
   Box,
@@ -14,12 +14,33 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 // Assets
-import signInImage from "assets/img/signInImage.png";
+import signInImage from "assets/img/signup-head.jpg";
+import { userSignIn } from "api/userApi";
 
 function SignIn() {
   // Chakra color mode
-  const titleColor = useColorModeValue("teal.300", "teal.200");
-  const textColor = useColorModeValue("gray.400", "white");
+  const titleColor = useColorModeValue("#dd6633", "teal.200");
+  const textColor = useColorModeValue("#10375C", "white");
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const attemptSignIn = async () => {
+    try {
+      const response = await userSignIn(username, password);
+      if (response.userId) {
+        localStorage.setItem("userId", response.userId);
+        localStorage.setItem("username", response.userName);
+        window.location.href = "http://localhost:3000/#/admin/home";
+      } else {
+        console.error("Error during sign in else:", response);
+      }
+    } catch (error) {
+      console.error("Error during sign in:", error);
+    }
+  };
+
   return (
     <Flex position='relative' mb='40px'>
       <Flex
@@ -50,19 +71,21 @@ function SignIn() {
               color={textColor}
               fontWeight='bold'
               fontSize='14px'>
-              Enter your email and password to sign in
+              Enter your username and password to sign in
             </Text>
             <FormControl>
               <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
-                Email
+                Username
               </FormLabel>
               <Input
                 borderRadius='15px'
                 mb='24px'
                 fontSize='sm'
                 type='text'
-                placeholder='Your email adress'
+                placeholder='Your username'
                 size='lg'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
               <FormLabel ms='4px' fontSize='sm' fontWeight='normal'>
                 Password
@@ -74,9 +97,11 @@ function SignIn() {
                 type='password'
                 placeholder='Your password'
                 size='lg'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControl display='flex' alignItems='center'>
-                <Switch id='remember-login' colorScheme='teal' me='10px' />
+                <Switch id='remember-login' colorScheme='orange' me='10px' />
                 <FormLabel
                   htmlFor='remember-login'
                   mb='0'
@@ -88,18 +113,20 @@ function SignIn() {
               <Button
                 fontSize='10px'
                 type='submit'
-                bg='teal.300'
+                bg='#EB8317'
                 w='100%'
                 h='45'
                 mb='20px'
                 color='white'
                 mt='20px'
                 _hover={{
-                  bg: "teal.200",
+                  bg: "#F3C623",
                 }}
                 _active={{
                   bg: "teal.400",
-                }}>
+                }}
+                onClick={attemptSignIn}
+                >
                 SIGN IN
               </Button>
             </FormControl>
@@ -111,7 +138,13 @@ function SignIn() {
               mt='0px'>
               <Text color={textColor} fontWeight='medium'>
                 Don't have an account?
-                <Link color={titleColor} as='span' ms='5px' fontWeight='bold'>
+                <Link 
+                  color={titleColor} 
+                  as='span' 
+                  ms='5px' 
+                  fontWeight='bold'
+                  onClick={() => window.location.href = "http://localhost:3000/#/auth/signup"}
+                >
                   Sign Up
                 </Link>
               </Text>
@@ -126,13 +159,18 @@ function SignIn() {
           position='absolute'
           right='0px'>
           <Box
-            bgImage={signInImage}
+            bg={`linear-gradient(
+              rgba(221, 102, 51, 0.6),  
+              rgba(221, 102, 51, 0.2)),
+              url(${signInImage})`}
             w='100%'
             h='100%'
             bgSize='cover'
             bgPosition='50%'
             position='absolute'
-            borderBottomLeftRadius='20px'></Box>
+            borderBottomLeftRadius='20px'
+            opacity='0.9'
+          ></Box>
         </Box>
       </Flex>
     </Flex>

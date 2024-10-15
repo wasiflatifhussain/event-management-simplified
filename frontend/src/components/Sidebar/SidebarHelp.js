@@ -30,10 +30,11 @@ export function SidebarHelp(props) {
       </Text>
       <Link
         w="100%"
-        href="https://demos.creative-tim.com/docs-purity-ui-dashboard/"
+        href="mailto:wasiflh@connect.hku.hk"
+        target="_blank"
       >
         <Button
-          fontSize="10px"
+          fontSize="13px"
           fontWeight="bold"
           w="100%"
           bg="#F3C623"
@@ -48,7 +49,7 @@ export function SidebarHelp(props) {
           }}
           color="white"
         >
-          DOCUMENTATION
+          Contact Us
         </Button>
       </Link>
     </Flex>

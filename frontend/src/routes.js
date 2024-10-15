@@ -57,10 +57,24 @@ var dashRoutes = [
         path: "/admin-manage-events",
         name: "Moderate Events",
         icon: <SupportIcon color="inherit" />,
-        component: SignIn,
+        component: Profile,  // you can replace Profile with the actual admin component
         layout: "/admin",
       },
     ],
   },
+  // Hidden routes for Sign In and Sign Up (not part of dashboard menu)
+  {
+    path: "/signin",  // sign in route
+    component: SignIn,
+    layout: "/auth",
+    hidden: true,  // This will not be displayed in the dashboard
+  },
+  {
+    path: "/signup",  // sign up route
+    component: SignUp,
+    layout: "/auth",
+    hidden: true,  // This will not be displayed in the dashboard
+  },
 ];
+
 export default dashRoutes;

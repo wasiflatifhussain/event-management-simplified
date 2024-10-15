@@ -56,3 +56,42 @@ export const rsvpOutFromEvent = async (eventId, userId) => {
     throw error;  // Re-throw the error if further handling is needed
   }
 };
+
+
+export const userSignUp = async (username, email, password) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/user-sign-up`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, email, password }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    console.error('Error signing up:', error);
+  }
+};
+
+export const userSignIn = async (username, password) => {
+  try {
+    const response = await fetch(`${BASE_URL}/users/user-sign-in`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.message);
+    }
+    return data;
+  } catch (error) {
+    console.error('Error signing up:', error);
+  }
+};

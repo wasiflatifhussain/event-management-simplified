@@ -30,6 +30,7 @@ import { NavLink } from "react-router-dom";
 import routes from "routes.js";
 
 export default function HeaderLinks(props) {
+  const userName = localStorage.getItem('username') ? localStorage.getItem('username') : "Sign In";
   const { variant, children, fixed, secondary, onOpen, ...rest } = props;
 
   // Chakra Color Mode
@@ -73,7 +74,11 @@ export default function HeaderLinks(props) {
             )
           }
         >
-          <Text display={{ sm: "none", md: "flex" }}>Sign In</Text>
+          {userName === "Sign In" ? (
+            <Text display={{ sm: "none", md: "flex" }}>{userName}</Text>
+          ) : (
+            <Text display={{ sm: "none", md: "flex" }}>{userName}</Text>
+          )}
         </Button>
       </NavLink>
       <SidebarResponsive
