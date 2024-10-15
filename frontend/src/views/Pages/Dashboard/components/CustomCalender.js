@@ -7,7 +7,7 @@ import {
 import React from "react";
 import EventCard from "./EventCard";
 
-export default function CustomCalendar({ events }) {
+export default function CustomCalendar({ events, handleRSVPOut, handleRSVPIn }) {
 
   const generateDaysInMonth = (month, year) => {
     const days = [];
@@ -53,7 +53,7 @@ export default function CustomCalendar({ events }) {
                 {day.getDate()}
               </Text>
               {dayEvents && dayEvents.map((event, index) => (
-                <EventCard key={index} event={event} />
+                <EventCard key={index} event={event} handleRSVPIn={handleRSVPIn} handleRSVPOut={handleRSVPOut} />
               ))}
             </Box>
           );

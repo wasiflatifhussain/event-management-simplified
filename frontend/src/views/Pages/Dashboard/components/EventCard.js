@@ -23,10 +23,11 @@ import {
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
 import React, { useState } from "react";
+import EventPopUpForm from "./EventPopUpForm";
 // import EventSignupPopUpForm from "./EventSignupPopUpForm";
 // import EventCheckInfoPopUpForm from "./EventCheckInfoPopUpForm";
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, handleRSVPIn, handleRSVPOut }) => {
   const toast = useToast();
   const userId = localStorage.getItem("userId");
   const bgColor = event.rsvpedUserIds.includes(userId)
@@ -38,57 +39,10 @@ const EventCard = ({ event }) => {
 
   const [openForm, setOpenForm] = useState(null);
 
-
-  const handleSlotChange = (slot) => {
-    setSelectedSlots((prev) =>
-      prev.includes(slot)
-        ? prev.filter((s) => s !== slot)
-        : [...prev, slot]
-    );
-  };
-
-  const handleTaskChange = (task) => {
-    setSelectedTasks((prev) =>
-      prev.includes(task)
-        ? prev.filter((t) => t !== task)
-        : [...prev, task]
-    );
-  };
-
   const handleEventClick = () => {
-    if (event.attendStatus) {
-      setOpenForm("checkInfo");  // Set to open EventCheckInfoPopUpForm
-    } else {
-      setOpenForm("signUp");  // Set to open EventSignupPopUpForm
-    }
-    onOpen();
+    onOpen(); 
   };
 
-
-  const handleSubmit = () => {
-    if (typeof event.updateAttendStatus === "function") {
-      event.updateAttendStatus(true);  // Set the status to true
-    }
-
-    toast({
-      title: "Event Sign Up Successful!",
-      description: "You have successfully signed up for the event.",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-      position: "top-right",
-    });
-    
-    onClose();
-  };
-
-  const handleRSVPOut = () => {
-    if (typeof event.updateAttendStatus === "function") {
-      event.updateAttendStatus(false);  // Set the status to false
-    }
-    console.log("RSVP'd Out of Event:", event.eventName);
-    onClose();
-  };
 
   return (
     <>
@@ -120,34 +74,15 @@ const EventCard = ({ event }) => {
             </Stat>
           </Flex>
         </CardBody>
-            </Card>
-
-          {openForm === "checkInfo" && (
-            {/* <EventCheckInfoPopUpForm 
-        isOpen={isOpen} 
-        onClose={onClose} 
+      </Card>
+      <EventPopUpForm
+        isOpen={isOpen}
+        onClose={onClose}
         event={event} 
-        selectedSlots={selectedSlots} 
-        selectedTasks={selectedTasks} 
-        handleSlotChange={handleSlotChange} 
-        handleTaskChange={handleTaskChange} 
-        handleSubmit={handleSubmit}
+        handleRSVPIn={handleRSVPIn}
         handleRSVPOut={handleRSVPOut}
-            /> */}
-    )}
+      />
 
-    {openForm === "signUp" && (
-      {/* <EventSignupPopUpForm 
-        isOpen={isOpen} 
-        onClose={onClose} 
-        event={event} 
-        selectedSlots={selectedSlots} 
-        selectedTasks={selectedTasks} 
-        handleSlotChange={handleSlotChange} 
-        handleTaskChange={handleTaskChange} 
-        handleSubmit={handleSubmit} 
-      /> */}
-    )}
     </>
   );
 };

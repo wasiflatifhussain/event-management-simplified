@@ -60,7 +60,7 @@ function FindEvents() {
       catch (error) {
         console.error('Error signing up for event:', error);
       }
-}
+  }
 
   const handleRSVPOut = async (eventId) => {
     try {

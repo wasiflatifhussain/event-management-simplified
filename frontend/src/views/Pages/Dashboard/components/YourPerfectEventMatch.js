@@ -8,14 +8,17 @@ import {
   Spacer,
   Text,
 } from "@chakra-ui/react";
+import { signUpForEvent } from "api/userApi";
+import { rsvpOutFromEvent } from "api/userApi";
 // Custom components
 import Card from "components/Card/Card.js";
 import CardBody from "components/Card/CardBody.js";
-import React from "react";
+import React, { useEffect, useState } from "react";
 // react icons
 import { BsArrowRight } from "react-icons/bs";
 
 const YourPerfectEventMatch = ({ title, description, backgroundImage, perfectMatchEvent }) => {
+  const userId = localStorage.getItem("userId");
   const overlayRef = React.useRef();
   const startDate = new Date(perfectMatchEvent.dateTimeStart);
   const endDate = new Date(perfectMatchEvent.dateTimeEnd);
@@ -25,6 +28,48 @@ const YourPerfectEventMatch = ({ title, description, backgroundImage, perfectMat
   const startTime = startDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   const endTime = endDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
   const eventDateString = `${eventDay} ${eventMonth}, ${startTime} - ${endTime}`;
+
+  const [attendStatus, setAttendStatus] = useState(false);
+
+
+  const handleRSVPIn = async (eventId) => {
+      try {
+        const addStatus = await signUpForEvent(eventId, userId);
+        if (addStatus.message === "User signed up for the event successfully") {
+          setAttendStatus(true);
+        }
+        else {
+            console.log(addStatus.message);
+        }
+      }
+      catch (error) {
+        console.error('Error signing up for event:', error);
+      }
+  }
+
+  const handleRSVPOut = async (eventId) => {
+    try {
+      const removeStatus = await rsvpOutFromEvent(eventId, userId);
+      if (removeStatus.message === "User rsvp-out from the event successfully") {
+        setAttendStatus(false);
+      }
+      else {
+        console.log(removeStatus.message);
+      }
+    } catch (error) {
+      console.error('Error RSVPing out from event:', error);
+    }
+    
+  };
+
+  useEffect(() => {
+    if (perfectMatchEvent.rsvpedUserIds.includes(userId)) {
+      setAttendStatus(true);
+    }
+    else {
+      setAttendStatus(false);
+    }
+  }, [perfectMatchEvent]);
 
   return (
     <Card maxHeight='290.5px' p='1rem'>
@@ -74,26 +119,55 @@ const YourPerfectEventMatch = ({ title, description, backgroundImage, perfectMat
             </Text>
 
             <Flex align='center'>
-              <Button p='0px' variant='no-hover' bg='transparent' mt='0px'>
-                <Text
-                  fontSize='sm'
-                  fontWeight='bold'
-                  _hover={{ me: "4px" }}
-                  transition='all .5s ease'>
-                  Attend Event
-                </Text>
-                <Icon
-                  as={BsArrowRight}
-                  w='20px'
-                  h='20px'
-                  fontSize='xl'
-                  transition='all .5s ease'
-                  mx='.3rem'
-                  cursor='pointer'
-                  _hover={{ transform: "translateX(20%)" }}
-                  pt='4px'
-                />
-              </Button>
+              {attendStatus ? (
+                <Button 
+                  p='0px' variant='no-hover' bg='transparent' mt='0px'
+                  onClick={() => handleRSVPOut(perfectMatchEvent._id)}  
+                >
+                  <Text
+                    fontSize='sm'
+                    fontWeight='bold'
+                    _hover={{ me: "4px" }}
+                    transition='all .5s ease'>
+                    Click to RSVP Out
+                  </Text>
+                  <Icon
+                    as={BsArrowRight}
+                    w='20px'
+                    h='20px'
+                    fontSize='xl'
+                    transition='all .5s ease'
+                    mx='.3rem'
+                    cursor='pointer'
+                    _hover={{ transform: "translateX(20%)" }}
+                    pt='4px'
+                  />
+                </Button>
+              ) : (
+                <Button 
+                  p='0px' variant='no-hover' bg='transparent' mt='0px'
+                  onClick={() => handleRSVPIn(perfectMatchEvent._id)}
+                >
+                  <Text
+                    fontSize='sm'
+                    fontWeight='bold'
+                    _hover={{ me: "4px" }}
+                    transition='all .5s ease'>
+                    Sign Up Now!
+                  </Text>
+                  <Icon
+                    as={BsArrowRight}
+                    w='20px'
+                    h='20px'
+                    fontSize='xl'
+                    transition='all .5s ease'
+                    mx='.3rem'
+                    cursor='pointer'
+                    _hover={{ transform: "translateX(20%)" }}
+                    pt='4px'
+                  />
+                </Button>
+              )}
             </Flex>
           </Flex>
         </Portal>

@@ -19,8 +19,11 @@ import YourPerfectEventMatch from "./components/YourPerfectEventMatch";
 import CustomCalendar from "./components/CustomCalender";
 import {events as initialEvents} from "./events";
 import { getEvents } from "api/eventApi";
+import { rsvpOutFromEvent } from "api/userApi";
+import { signUpForEvent } from "api/userApi";
 
 export default function Home() {
+  const userId = localStorage.getItem("userId");
   const iconBoxInside = useColorModeValue("white", "white");
 
   const [events, setEvents] = useState(); 
@@ -61,6 +64,55 @@ export default function Home() {
     return <p>{error}</p>;
   }
 
+  const handleRSVPIn = async (eventId) => {
+    try {
+      const addStatus = await signUpForEvent(eventId, userId);
+      if (addStatus.message === "User signed up for the event successfully") {
+        
+        const updatedEvents = events.map(event => {
+          if (event._id === eventId) {
+            return {
+              ...event,
+              rsvpedUserIds: [...event.rsvpedUserIds, userId],  
+            };
+          }
+          return event;
+        });
+        
+        setEvents(updatedEvents);  
+      } else {
+        console.log(addStatus.message);
+      }
+    } catch (error) {
+      console.error('Error signing up for event:', error);
+    }
+  };
+  
+  const handleRSVPOut = async (eventId) => {
+    try {
+      const removeStatus = await rsvpOutFromEvent(eventId, userId);
+      if (removeStatus.message === "User rsvp-out from the event successfully") {
+
+        const updatedEvents = events.map(event => {
+          if (event._id === eventId) {
+            return {
+              ...event,
+              rsvpedUserIds: event.rsvpedUserIds.filter(id => id !== userId), 
+            };
+          }
+          return event;
+        });
+  
+        setEvents(updatedEvents);  
+      } else {
+        console.log(removeStatus.message);
+      }
+    } catch (error) {
+      console.error('Error RSVPing out from event:', error);
+    }
+  };
+  
+
   return (
     <Flex flexDirection='column' pt={{ base: "120px", md: "75px" }}>
       <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing=''>
@@ -82,7 +134,7 @@ export default function Home() {
           title={"Highligth Event This Month"}
           name={"Gatherly's Highlights"}
           description={
-            "Find out about the most treending, hot event according to Gatherly's statistics. You can't miss this one out!"
+            "Find out about the most teending, hot event according to Gatherly's statistics. You can't miss this one out!"
           }
           image={
             <Image
@@ -93,7 +145,7 @@ export default function Home() {
               loading="lazy"
             />
           }
-          highlightEvent={events[0]}
+          highlightEvent={events[1]}
         />
         <YourPerfectEventMatch
           backgroundImage={peopleImage}
@@ -101,8 +153,7 @@ export default function Home() {
           description={
             "Our AI-matching tool has found events which match your interests and can help you meet people with similar interests."
           }
-          perfectMatchEvent={events[1]}
-          
+          perfectMatchEvent={events[0]}          
         />
       </Grid>
       <SimpleGrid columns={{ sm: 1, md: 2, xl: 4 }} spacing=''>
@@ -159,10 +210,9 @@ export default function Home() {
       >
         <Box width="152%" height="auto" paddingBottom={10}>
           <CustomCalendar
-            events={events.map(event => ({
-              ...event,
-              updateAttendStatus: (newStatus) => handleUpdateAttendStatus(event.eventId, newStatus),
-            }))}
+            handleRSVPIn={handleRSVPIn}
+            handleRSVPOut={handleRSVPOut}
+            events={events}
           />
         </Box>
       </Grid>
