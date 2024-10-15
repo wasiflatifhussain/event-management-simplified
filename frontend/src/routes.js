@@ -41,27 +41,27 @@ var dashRoutes = [
     component: ManageRSVP,
     layout: "/admin",
   },
-  {
-    name: "Admin Panel",
-    category: "account",
-    state: "pageCollapse",
-    views: [
-      {
-        path: "/admin-add-events",
-        name: "Add Events",
-        icon: <DocumentIcon color="inherit" />,
-        component: Profile,
-        layout: "/admin",
-      },
-      {
-        path: "/admin-manage-events",
-        name: "Moderate Events",
-        icon: <SupportIcon color="inherit" />,
-        component: Profile,  // you can replace Profile with the actual admin component
-        layout: "/admin",
-      },
-    ],
-  },
+  // {
+  //   name: "Admin Panel",
+  //   category: "account",
+  //   state: "pageCollapse",
+  //   views: [
+  //     {
+  //       path: "/admin-add-events",
+  //       name: "Add Events",
+  //       icon: <DocumentIcon color="inherit" />,
+  //       component: Profile,
+  //       layout: "/admin",
+  //     },
+  //     {
+  //       path: "/admin-manage-events",
+  //       name: "Moderate Events",
+  //       icon: <SupportIcon color="inherit" />,
+  //       component: Profile,  // you can replace Profile with the actual admin component
+  //       layout: "/admin",
+  //     },
+  //   ],
+  // },
   // Hidden routes for Sign In and Sign Up (not part of dashboard menu)
   {
     path: "/signin",  // sign in route

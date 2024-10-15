@@ -18,6 +18,7 @@ export function SidebarHelp(props) {
       p="16px"
       h="170px"
       w="100%"
+      mt="22vh"
     >
       <IconBox width="35px" h="35px" bg="white" mb="auto">
         <QuestionIcon color="#dd6633" h="18px" w="18px" />
