@@ -90,6 +90,7 @@ export default function Home() {
               alt='highlight'
               minWidth={{ md: "300px", lg: "auto" }}
               borderRadius="15px"
+              loading="lazy"
             />
           }
           highlightEvent={events[0]}

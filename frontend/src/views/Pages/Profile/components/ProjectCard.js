@@ -18,7 +18,7 @@ const ProjectCard = ({ image, name, category, avatars, description }) => {
   return (
     <Flex direction='column'>
       <Box mb='20px' position='relative' borderRadius='15px'>
-        <Image src={image} borderRadius='15px' />
+        <Image src={image} borderRadius='15px' loading="lazy" />
         <Box
           w='100%'
           h='100%'

@@ -1,9 +1,8 @@
 import React from "react";
 import { Box, Text, Flex, Button, Image, useColorModeValue, Icon } from "@chakra-ui/react";
 import { FaCheck, FaTrashAlt } from "react-icons/fa"; // Icons for RSVP buttons
-import eventimage from "../../../../assets/img/eid.jpg"; // Sample event image
 
-const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
+const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut, eventimage }) => {
   // Format date and time
   const userId = localStorage.getItem("userId");
   const startDate = new Date(event.dateTimeStart);
@@ -38,6 +37,7 @@ const EventSlideCard = ({ event, attendStatus, onRSVPIn, onRSVPOut }) => {
         boxSize="100%"
         objectFit="cover"
         h="28vh"
+        loading="lazy"
       />
 
       {/* Middle Section: Event Details */}

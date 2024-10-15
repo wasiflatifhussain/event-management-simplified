@@ -87,6 +87,7 @@ const EventSearchResult = ({ event, onRSVPOut }) => {
               borderRadius="15px"
               boxSize="100%"
               objectFit="cover"
+              loading="lazy"
             />
 
             {/* Gradient Overlay */}

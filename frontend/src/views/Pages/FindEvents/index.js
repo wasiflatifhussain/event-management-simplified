@@ -15,6 +15,12 @@ import { getFirst50Events } from "api/eventApi";
 import { signUpForEvent } from "api/userApi";
 import { rsvpOutFromEvent } from "api/userApi";
 
+import eventimage1 from "../../../assets/img/evtimg1.jpg";
+import eventimage2 from "../../../assets/img/evtimg2.jpg";
+import eventimage3 from "../../../assets/img/evtimg3.jpg";
+import eventimage4 from "../../../assets/img/evtimg4.jpg";
+import eventimage5 from "../../../assets/img/evtimg5.jpg";
+
 function FindEvents() {
   const userId = localStorage.getItem("userId");
   const [loading, setLoading] = useState(true); 
@@ -24,6 +30,7 @@ function FindEvents() {
   const mainTeal = useColorModeValue("teal.300", "teal.300");
   const searchIconColor = useColorModeValue("gray.700", "gray.200");
   const inputBg = useColorModeValue("white", "gray.800");
+  const eventImages = [eventimage1, eventimage2, eventimage3];
 
   // filter the events based on the search query
   const filteredEvents = allCurrEvents.filter(event =>
@@ -205,6 +212,7 @@ function FindEvents() {
               attendStatus={event.attendStatus} // Pass attendStatus here
               onRSVPIn={handleRSVPIn} // Pass the handler
               onRSVPOut={handleRSVPOut} // Pass the handler
+              eventimage={eventImages[index % eventImages.length]} // Cycle through the images
             />
             </SwiperSlide>
           ))}

@@ -77,6 +77,7 @@ export default function Dashboard() {
               src={logoChakra}
               alt='chakra image'
               minWidth={{ md: "300px", lg: "auto" }}
+              loading="lazy"
             />
           }
         />
