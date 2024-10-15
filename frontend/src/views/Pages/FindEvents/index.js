@@ -55,7 +55,6 @@ function FindEvents() {
       }
 }
 
-  // handle RSVP Out: Set attendStatus to false
   const handleRSVPOut = async (eventId) => {
     try {
       const removeStatus = await rsvpOutFromEvent(eventId, userId);
@@ -87,8 +86,10 @@ function FindEvents() {
       try {
         setLoading(true);
         const events = await getFirst50Events(userId);
-        setAllCurrEvents(events);
-        setSearchQuery(events[0].eventName); 
+        if (events.length > 0) {
+          setAllCurrEvents(events);
+          setSearchQuery(events[0].eventName); 
+        }
       } catch (error) {
         setError(error);
       } finally {

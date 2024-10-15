@@ -54,7 +54,7 @@ const EventSearchResult = ({ event, onRSVPOut }) => {
               <Button
                 p="0px"
                 bg="transparent"
-                onClick={() => onRSVPOut(event.eventId)} // Trigger RSVP out
+                onClick={() => onRSVPOut(event._id)} // Trigger RSVP out
               >
                 <Flex color={rsvptextColor} cursor="pointer" align="center" p="12px">
                   <Icon as={FaTrashAlt} me="4px" />

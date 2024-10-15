@@ -41,7 +41,9 @@ export default function Home() {
       try {
         setLoading(true);
         const events = await getEvents(currentMonth);
-        setEvents(events);
+        if (events.length > 0) {
+          setEvents(events);
+        }
       } catch (error) {
         setError(error);
       } finally {
